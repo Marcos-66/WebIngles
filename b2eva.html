@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Evaluación B2</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            background-color: #2a5298; 
+            text-align: center; 
+            padding: 40px; 
+        }
+        .contenedor-quiz { 
+            max-width: 600px; 
+            margin: auto; 
+            background: white; 
+            padding: 30px; 
+            border-radius: 10px; 
+        }
+        .pregunta { 
+            text-align: left; 
+            margin-bottom: 20px; 
+            border-bottom: 1px solid #eee; 
+            padding-bottom: 10px; 
+        }
+        button { 
+            background-color: #2a5298; 
+            color: white; 
+            padding: 12px 25px; 
+            border: none; 
+            border-radius: 5px; 
+            cursor: pointer; 
+            font-size: 16px; 
+        }
+        #resultado { 
+            margin-top: 20px; 
+            font-weight: bold; 
+            font-size: 20px; 
+        }
+        a { 
+            display: inline-block; 
+            margin-top: 20px; 
+            color: #2a5298; 
+            text-decoration: none; 
+        }
+    </style>
+</head>
+<body>
+    
+<div class="contenedor-quiz">
+    <h2>Evaluación Nivel B2</h2>
+    <form id="quizForm">
+        <div class="pregunta">
+            <p>1. If I ___ more time, I would study more.</p>
+            <input type="radio" name="q1" value="1"> had<br>
+            <input type="radio" name="q1" value="0"> have<br>
+            <input type="radio" name="q1" value="0"> will have
+        </div>
+        <div class="pregunta">
+            <p>2. I wish I ___ speak better English.</p>
+            <input type="radio" name="q2" value="1"> could<br>
+            <input type="radio" name="q2" value="0"> can<br>
+            <input type="radio" name="q2" value="0"> will
+        </div>
+        <div class="pregunta">
+            <p>3. He ___ working here for 10 years.</p>
+            <input type="radio" name="q3" value="1"> has been<br>
+            <input type="radio" name="q3" value="0"> is<br>
+            <input type="radio" name="q3" value="0"> was
+        </div>
+        <div class="pregunta">
+            <p>4. The project ___ by the team.</p>
+            <input type="radio" name="q4" value="1"> was completed<br>
+            <input type="radio" name="q4" value="0"> completed<br>
+            <input type="radio" name="q4" value="0"> completes
+        </div>
+        <div class="pregunta">
+            <p>5. I’m used to ___ early.</p>
+            <input type="radio" name="q5" value="1"> getting<br>
+            <input type="radio" name="q5" value="0"> get<br>
+            <input type="radio" name="q5" value="0"> got
+        </div>
+        <div class="pregunta">
+            <p>6. She ___ have missed the train.</p>
+            <input type="radio" name="q6" value="1"> must<br>
+            <input type="radio" name="q6" value="0"> can<br>
+            <input type="radio" name="q6" value="0"> should
+        </div>
+        <div class="pregunta">
+            <p>7. By next year, I ___ finished my studies.</p>
+            <input type="radio" name="q7" value="1"> will have<br>
+            <input type="radio" name="q7" value="0"> have<br>
+            <input type="radio" name="q7" value="0"> had
+        </div>
+        <div class="pregunta">
+            <p>8. He asked me where I ___.</p>
+            <input type="radio" name="q8" value="1"> lived<br>
+            <input type="radio" name="q8" value="0"> live<br>
+            <input type="radio" name="q8" value="0"> living
+        </div>
+        <div class="pregunta">
+            <p>9. Not only ___ late, but he also forgot.</p>
+            <input type="radio" name="q9" value="1"> was he<br>
+            <input type="radio" name="q9" value="0"> he was<br>
+            <input type="radio" name="q9" value="0"> is he
+        </div>
+        <div class="pregunta">
+            <p>10. I’d rather you ___ now.</p>
+            <input type="radio" name="q10" value="1"> left<br>
+            <input type="radio" name="q10" value="0"> leave<br>
+            <input type="radio" name="q10" value="0"> leaving
+        </div>
+    </form>
+    <button type="button" onclick="verificar()">Corregir Examen</button>
+    <div id="resultado"></div>
+</div>
+<script>
+var evaluacionCompletada = false;
+
+window.onbeforeunload = function() {
+    if (!evaluacionCompletada) {
+        return "No puedes salir de la evaluación hasta completarla. ¿Estás seguro de que quieres salir?";
+    }
+};
+
+function verificar() {
+    let f = document.getElementById("quizForm");
+    let todasRespondidas = true;
+    for (let i = 1; i <= 10; i++) {
+        let opciones = f["q" + i];
+        let respondida = false;
+        for (let j = 0; j < opciones.length; j++) {
+            if (opciones[j].checked) { respondida = true; }
+        }
+        if (!respondida) { todasRespondidas = false; }
+    }
+    
+    if (!todasRespondidas) {
+        alert("Por favor, responde todas las preguntas antes de enviar el examen.");
+        return;
+    }
+    
+    let nota = 0;
+    for (let i = 1; i <= 10; i++) {
+        let opciones = f["q" + i];
+        for (let j = 0; j < opciones.length; j++) {
+            if (opciones[j].checked) { nota += parseInt(opciones[j].value); }
+        }
+    }
+    let mensaje = "";
+    if(nota <= 2) mensaje = "Nivel bajo - B2 en progreso";
+    else if(nota <= 4) mensaje = "Nivel básico - B2";
+    else if(nota <= 7) mensaje = "Buen nivel - B2";
+    else if(nota <= 9) mensaje = "Excelente nivel - B2 alto";
+    else if(nota == 10) mensaje = "¡Nivel avanzado!";
+    document.getElementById("resultado").innerHTML = "Resultado: " + nota + "/10<br>" + mensaje;
+    evaluacionCompletada = true;
+    window.onbeforeunload = null;
+}
+</script>
+</body>
+</html>

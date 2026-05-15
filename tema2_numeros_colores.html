@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A1 - Tema 2: Números y Colores</title>
+    <style>
+        body{font-family:Arial,sans-serif;background:#f4f6f9;margin:0;padding:0;text-align:center}
+        header{background:#2a5298;color:#fff;padding:30px 15px;margin-bottom:20px}
+        .contenedor{max-width:900px;margin:0 auto;padding:0 20px}
+        .seccion{background:#fff;padding:20px;margin-bottom:15px;border-radius:10px;border-left:6px solid #ff9800;text-align:left}
+        h2{color:#2a5298;margin-top:0}.ejercicio{margin:15px 0;padding:12px;background:#f8f9fa;border-radius:8px}
+        .ejercicio p{margin:8px 0;font-weight:500}.opciones label{display:block;margin:6px 0;cursor:pointer}
+        input[type="text"]{padding:6px 10px;border:1px solid #ccc;border-radius:4px;width:150px}
+        .tipo-ejercicio{font-size:0.85em;color:#666;font-style:italic;margin-bottom:5px}
+        .btn-comprobar{background:#ff9800;color:#fff;padding:12px 30px;border:none;border-radius:5px;cursor:pointer;margin:20px 0}
+        .resultado{padding:15px;margin:15px 0;border-radius:5px;display:none}.resultado.correcto{background:#d4edda;color:#155724}.resultado.incorrecto{background:#f8d7da;color:#721c24}
+        .btn-regresar{background:#2a5298;color:#fff;padding:10px 22px;border-radius:5px;text-decoration:none;display:inline-block;margin:20px 0}
+        .drag-container{display:flex;gap:20px;margin:15px 0;justify-content:center;flex-wrap:wrap}.draggable{background:#ff9800;color:#fff;padding:10px 15px;border-radius:5px;cursor:grab;display:inline-block;margin:5px;font-weight:bold}.draggable:active{cursor:grabbing}.drop-area{border:2px dashed #2a5298;background:#f8f9fa;padding:15px;min-width:150px;min-height:50px;border-radius:8px;text-align:center;margin:5px;display:inline-block}.drop-area.drag-over{background:#e8f0fe;border-color:#ff9800}.match-container{display:flex;justify-content:space-around;flex-wrap:wrap;margin:15px 0}.match-column{display:flex;flex-direction:column;gap:10px}.match-item{background:#e9ecef;padding:10px 20px;border-radius:5px;cursor:pointer;text-align:center}.match-item.selected{background:#2a5298;color:#fff}.match-item.matched{background:#28a745;color:#fff;opacity:0.7}.match-item.wrong{background:#dc3545;color:#fff}.pairs-display{margin-top:15px}.pair-item{background:#e9ecef;padding:8px;margin:5px;border-radius:5px;display:inline-block}
+    </style>
+</head>
+<body>
+    <header><h1>Nivel A1 - Tema 2: Números y Colores</h1></header>
+    <div class="contenedor">
+        <div class="seccion"><h2>GRAMÁTICA</h2>
+            <div class="ejercicio"><p class="tipo-ejercicio">Opción múltiple</p><p>1. "First" significa:</p><div class="opciones"><label><input type="radio" name="g1" value="a">primero</label><label><input type="radio" name="g1" value="b">segundo</label><label><input type="radio" name="g1" value="c">tercero</label></div></div>
+            <div class="ejercicio"><p class="tipo-ejercicio">Elegir entre 2</p><p>2. I have ________ (two/second) brothers.</p><div class="opciones"><label><input type="radio" name="g2" value="a">two</label><label><input type="radio" name="g2" value="b">second</label></div></div>
+            <div class="ejercicio"><p class="tipo-ejercicio">Rellenar huecos</p><p>3. Complete: "There ________ five students in the class."</p><input type="text" name="g3" placeholder="Escribe..." style="text-transform:lowercase;"></div>
+            <div class="ejercicio"><p class="tipo-ejercicio">Opción múltiple</p><p>4. "Seven" es:</p><div class="opciones"><label><input type="radio" name="g4" value="a">7</label><label><input type="radio" name="g4" value="b">8</label><label><input type="radio" name="g4" value="c">9</label></div></div>
+            <div class="ejercicio"><p class="tipo-ejercicio">Rellenar huecos</p><p>5. Complete: "My ________ birthday is today."</p><input type="text" name="g5" placeholder="Escribe..." style="text-transform:lowercase;"></div>
+            <div class="ejercicio"><p class="tipo-ejercicio">Verdadero o Falso</p><p>6. "Five" = 5.</p><div class="opciones"><label><input type="radio" name="g6" value="a">Verdadero</label><label><input type="radio" name="g6" value="b">Falso</label></div></div>
+            <div class="ejercicio"><p class="tipo-ejercicio">Elegir entre 2</p><p>7. There ________ (is/are) a cat.</p><div class="opciones"><label><input type="radio" name="g7" value="a">is</label><label><input type="radio" name="g7" value="b">are</label></div></div>
+            <div class="ejercicio"><p class="tipo-ejercicio">Rellenar huecos</p><p>8. Complete: "I have ________ apples."</p><input type="text" name="g8" placeholder="Escribe un número..." style="text-transform:lowercase;"></div>
+            <div class="ejercicio"><p class="tipo-ejercicio">Opción múltiple</p><p>9. "Ten" es:</p><div class="opciones"><label><input type="radio" name="g9" value="a">10</label><label><input type="radio" name="g9" value="b">12</label><label><input type="radio" name="g9" value="c">20</label></div></div>
+            <div class="ejercicio"><p class="tipo-ejercicio">Elegir entre 2</p><p>10. "Three" es (3/4).</p><div class="opciones"><label><input type="radio" name="g10" value="a">3</label><label><input type="radio" name="g10" value="b">4</label></div></div>
+            <div class="ejercicio"><p class="tipo-ejercicio">Rellenar huecos</p><p>11. Complete: "There ________ two dogs."</p><input type="text" name="g11" placeholder="Escribe..." style="text-transform:lowercase;"></div>
+            <div class="ejercicio"><p class="tipo-ejercicio">Verdadero o Falso</p><p>12. "Eleven" = 11.</p><div class="opciones"><label><input type="radio" name="g12" value="a">Verdadero</label><label><input type="radio" name="g12" value="b">Falso</label></div></div>
+            <div class="ejercicio"><p class="tipo-ejercicio">Rellenar huecos</p><p>13. Complete: "The ________ (9th) place."</p><input type="text" name="g13" placeholder="Escribe..." style="text-transform:lowercase;"></div>
+            <div class="ejercicio"><p class="tipo-ejercicio">Elegir entre 2</p><p>14. "Four" es (4/5).</p><div class="opciones"><label><input type="radio" name="g14" value="a">4</label><label><input type="radio" name="g14" value="b">5</label></div></div>
+            <div class="ejercicio"><p class="tipo-ejercicio">Opción múltiple</p><p>15. ¿Cómo se dice "Tengo dos hermanos"?</p><div class="opciones"><label><input type="radio" name="g15" value="a">I have two brothers</label><label><input type="radio" name="g15" value="b">I have too brothers</label><label><input type="radio" name="g15" value="c">I have second brothers</label></div></div>
+        </div>
+        <div class="seccion"><h2>VOCABULARIO</h2>
+            <div class="ejercicio"><p class="tipo-ejercicio">Opción múltiple</p><p>16. "Blue" es:</p><div class="opciones"><label><input type="radio" name="v1" value="a">rojo</label><label><input type="radio" name="v1" value="b">azul</label><label><input type="radio" name="v1" value="c">verde</label></div></div>
+            <div class="ejercicio"><p class="tipo-ejercicio">Elegir entre 2</p><p>17. "Green" es (verde/rojo).</p><div class="opciones"><label><input type="radio" name="v2" value="a">verde</label><label><input type="radio" name="v2" value="b">rojo</label></div></div>
+            <div class="ejercicio"><p class="tipo-ejercicio">Rellenar huecos</p><p>18. Complete: "The sky is ________."</p><input type="text" name="v3" placeholder="Escribe un color..." style="text-transform:lowercase;"></div>
+            <div class="ejercicio"><p class="tipo-ejercicio">Verdadero o Falso</p><p>19. "Red" significa rojo.</p><div class="opciones"><label><input type="radio" name="v4" value="a">Verdadero</label><label><input type="radio" name="v4" value="b">Falso</label></div></div>
+            <div class="ejercicio"><p class="tipo-ejercicio">Rellenar huecos</p><p>20. Complete: "The grass is ________."</p><input type="text" name="v5" placeholder="Escribe..." style="text-transform:lowercase;"></div>
+            <div class="ejercicio"><p class="tipo-ejercicio">Elegir entre 2</p><p>21. "Yellow" es (amarillo/naranja).</p><div class="opciones"><label><input type="radio" name="v6" value="a">amarillo</label><label><input type="radio" name="v6" value="b">naranja</label></div></div>
+            <div class="ejercicio"><p class="tipo-ejercicio">Opción múltiple</p><p>22. "Orange" es:</p><div class="opciones"><label><input type="radio" name="v7" value="a">naranja</label><label><input type="radio" name="v7" value="b">morado</label><label><input type="radio" name="v7" value="c">rosa</label></div></div>
+            <div class="ejercicio"><p class="tipo-ejercicio">Rellenar huecos</p><p>23. Complete: "My car is ________."</p><input type="text" name="v8" placeholder="Escribe un color..." style="text-transform:lowercase;"></div>
+            <div class="ejercicio"><p class="tipo-ejercicio">Elegir entre 2</p><p>24. "Black" es (negro/blanco).</p><div class="opciones"><label><input type="radio" name="v9" value="a">negro</label><label><input type="radio" name="v9" value="b">blanco</label></div></div>
+            <div class="ejercicio"><p class="tipo-ejercicio">Opción múltiple</p><p>25. "¿Qué color es el sol?"</p><div class="opciones"><label><input type="radio" name="v10" value="a">Yellow</label><label><input type="radio" name="v10" value="b">Blue</label><label><input type="radio" name="v10" value="c">Green</label></div></div>
+            <div class="ejercicio"><p class="tipo-ejercicio">Rellenar huecos</p><p>26. Complete: "The banana is ________."</p><input type="text" name="v11" placeholder="Escribe..." style="text-transform:lowercase;"></div>
+            <div class="ejercicio"><p class="tipo-ejercicio">Verdadero o Falso</p><p>27. "Purple" = morado.</p><div class="opciones"><label><input type="radio" name="v12" value="a">Verdadero</label><label><input type="radio" name="v12" value="b">Falso</label></div></div>
+        </div>
+        <div class="seccion"><h2>EJERCICIOS EXTRA - Arrastrar y Soltar</h2>
+            <div class="ejercicio"><p class="tipo-ejercicio">Arrastrar y soltar - Números</p><p>Arrastra el número correcto:</p><div class="drag-container"><div class="draggable" draggable="true" data-value="three">three</div><div class="draggable" draggable="true" data-value="five">five</div><div class="draggable" draggable="true" data-value="seven">seven</div></div><div>I have ________ brothers. <span class="drop-area" data-answer="three" id="drop1"></span></div></div>
+            <div class="ejercicio"><p class="tipo-ejercicio">Arrastrar y soltar - Colores</p><p>Arrastra el color correcto:</p><div class="drag-container"><div class="draggable" draggable="true" data-value="blue">blue</div><div class="draggable" draggable="true" data-value="red">red</div><div class="draggable" draggable="true" data-value="green">green</div></div><div>The sky is ________. <span class="drop-area" data-answer="blue" id="drop2"></span></div></div>
+        </div>
+        <div class="seccion"><h2>EJERCICIOS EXTRA - Emparejar</h2>
+            <div class="ejercicio"><p class="tipo-ejercicio">Emparejar - Números con dígitos</p><p>Haz clic para emparejar:</p><div class="match-container"><div class="match-column"><div class="match-item" data-match="a" onclick="selectMatch(this)">One</div><div class="match-item" data-match="b" onclick="selectMatch(this)">Two</div><div class="match-item" data-match="c" onclick="selectMatch(this)">Three</div></div><div class="match-column"><div class="match-item" data-match="c" onclick="selectMatch(this)">3</div><div class="match-item" data-match="a" onclick="selectMatch(this)">1</div><div class="match-item" data-match="b" onclick="selectMatch(this)">2</div></div></div><div class="pairs-display" id="pairsDisplay"></div><input type="hidden" name="m1" id="m1"></div>
+        </div>
+        <button class="btn-comprobar" onclick="comprobar()">COMPROBAR</button>
+        <div id="resultado" class="resultado"></div>
+        <a href="index.html" class="btn-regresar">← Volver</a>
+    </div>
+    <script>
+    let matchedPairs = [];
+    let selectedMatchItem = null;
+
+    document.querySelectorAll('.draggable').forEach(item => {
+        item.addEventListener('dragstart', function(e) { e.dataTransfer.setData('text/plain', this.getAttribute('data-value')); });
+    });
+    document.querySelectorAll('.drop-area').forEach(zone => {
+        zone.addEventListener('dragover', function(e) { e.preventDefault(); this.classList.add('drag-over'); });
+        zone.addEventListener('dragleave', function() { this.classList.remove('drag-over'); });
+        zone.addEventListener('drop', function(e) {
+            e.preventDefault();
+            this.classList.remove('drag-over');
+            const droppedValue = e.dataTransfer.getData('text/plain');
+            this.textContent = droppedValue;
+            this.setAttribute('data-filled', droppedValue);
+        });
+    });
+
+    function selectMatch(element) {
+        if (element.classList.contains('matched') || element.classList.contains('wrong')) return;
+        if (!selectedMatchItem) {
+            selectedMatchItem = element;
+            element.classList.add('selected');
+        } else {
+            const match1 = selectedMatchItem.getAttribute('data-match');
+            const match2 = element.getAttribute('data-match');
+            if (match1 === match2) {
+                selectedMatchItem.classList.remove('selected');
+                selectedMatchItem.classList.add('matched');
+                element.classList.add('matched');
+                matchedPairs.push({left: selectedMatchItem.textContent, right: element.textContent});
+                updatePairsDisplay();
+            } else {
+                element.classList.add('wrong');
+                setTimeout(() => element.classList.remove('wrong'), 500);
+            }
+            selectedMatchItem = null;
+        }
+    }
+
+    function updatePairsDisplay() {
+        document.getElementById('pairsDisplay').innerHTML = matchedPairs.map(p => `<span class="pair-item">${p.left} - ${p.right}</span>`).join('');
+        document.getElementById('m1').value = matchedPairs.length;
+    }
+
+    const respuestas = {
+        g1:{tipo:'radio',valor:'a'},g2:{tipo:'radio',valor:'a'},g3:{tipo:'texto',valor:'are'},g4:{tipo:'radio',valor:'a'},
+        g5:{tipo:'texto',valor:'third'},g6:{tipo:'radio',valor:'a'},g7:{tipo:'radio',valor:'a'},g8:{tipo:'texto',valor:'three'},
+        g9:{tipo:'radio',valor:'a'},g10:{tipo:'radio',valor:'a'},g11:{tipo:'texto',valor:'are'},g12:{tipo:'radio',valor:'a'},
+        g13:{tipo:'texto',valor:'ninth'},g14:{tipo:'radio',valor:'a'},g15:{tipo:'radio',valor:'a'},
+        v1:{tipo:'radio',valor:'b'},v2:{tipo:'radio',valor:'a'},v3:{tipo:'texto',valor:'blue'},v4:{tipo:'radio',valor:'a'},
+        v5:{tipo:'texto',valor:'green'},v6:{tipo:'radio',valor:'a'},v7:{tipo:'radio',valor:'a'},v8:{tipo:'texto',valor:'red'},
+        v9:{tipo:'radio',valor:'a'},v10:{tipo:'radio',valor:'a'},v11:{tipo:'texto',valor:'yellow'},v12:{tipo:'radio',valor:'a'},
+        d1:{tipo:'drag',valor:'three',elemento:'drop1'},d2:{tipo:'drag',valor:'blue',elemento:'drop2'},
+        m1:{tipo:'match',valor:3,pares:{One:'1',Two:'2',Three:'3'}}
+    };
+    const textosOp = {
+        g1:{a:'primero',b:'segundo',c:'tercero'},g2:{a:'two',b:'second'},g4:{a:'7',b:'8',c:'9'},g6:{a:'Verdadero',b:'Falso'},
+        g7:{a:'is',b:'are'},g9:{a:'10',b:'12',c:'20'},g10:{a:'3',b:'4'},g12:{a:'Verdadero',b:'Falso'},
+        g14:{a:'4',b:'5'},g15:{a:'I have two brothers',b:'I have too brothers',c:'I have second brothers'},
+        v1:{a:'rojo',b:'azul',c:'verde'},v2:{a:'verde',b:'rojo'},v4:{a:'Verdadero',b:'Falso'},
+        v6:{a:'amarillo',b:'naranja'},v7:{a:'naranja',b:'morado',c:'rosa'},v9:{a:'negro',b:'blanco'},
+        v10:{a:'Yellow',b:'Blue',c:'Green'},v12:{a:'Verdadero',b:'Falso'},
+        d1:{a:'three'},d2:{a:'blue'}
+    };
+    const preguntas = {
+        g1:'1. First',g2:'2. two brothers',g3:'3. are five',g4:'4. Seven',g5:'5. third birthday',g6:'6. Five = 5',
+        g7:'7. is a cat',g8:'8. three apples',g9:'9. Ten',g10:'10. Three',g11:'11. are two dogs',g12:'12. Eleven = 11',
+        g13:'13. ninth place',g14:'14. Four',g15:'15. two brothers',
+        v1:'16. Blue',v2:'17. Green',v3:'18. blue sky',v4:'19. Red = rojo',v5:'20. green grass',
+        v6:'21. Yellow',v7:'22. Orange',v8:'23. car color',v9:'24. Black',v10:'25. sun color',
+        v11:'26. banana color',v12:'27. Purple = morado',
+        d1:'28. Arrastrar: I have ___ brothers', d2:'29. Arrastrar: sky is ___',
+        m1:'30. Emparejar: 3 pares correctos'
+    };
+
+function getAnswerValue(name) {
+    const config = respuestas[name];
+    if (!config) return '';
+    if (config.tipo === 'radio') {
+        const selectedOption = document.querySelector(`input[name="${name}"]:checked`);
+        return selectedOption ? selectedOption.value : '';
+    }
+    if (config.tipo === 'texto') {
+        const textField = document.querySelector(`input[name="${name}"]`);
+        return textField ? textField.value.trim().toLowerCase() : '';
+    }
+    if (config.tipo === 'drag') {
+        const dropZone = document.getElementById(config.elemento);
+        return dropZone ? dropZone.getAttribute('data-filled') || '' : '';
+    }
+    if (config.tipo === 'match') {
+        return document.getElementById(name) ? document.getElementById(name).value : '';
+    }
+    return '';
+}
+
+function getUnansweredQuestions() {
+    return Object.entries(respuestas).filter(([name, config]) => {
+        const value = getAnswerValue(name);
+        if (!value) return true;
+        if (config.tipo === 'match') return parseInt(value) !== config.valor;
+        return false;
+    }).map(([name]) => name);
+}
+
+function showResult(score, mistakes) {
+    const resultado = document.getElementById('resultado');
+    resultado.style.display = 'block';
+    const total = Object.keys(respuestas).length;
+
+    if (mistakes.length === 0) {
+        resultado.className = 'resultado correcto';
+        resultado.innerHTML = `<strong>¡Perfecto! ${total}/${total}</strong>`;
+        return;
+    }
+
+    const details = mistakes.map(key => {
+        const config = respuestas[key];
+        let correctText;
+        if (config.tipo === 'radio') correctText = textosOp[key][config.valor];
+        else if (config.tipo === 'drag') correctText = config.valor;
+        else if (config.tipo === 'match') correctText = '3 pares correctos (One-1, Two-2, Three-3)';
+        else correctText = config.valor;
+        return `• ${preguntas[key]} → ${correctText}`;
+    }).join('<br>');
+
+    resultado.className = 'resultado incorrecto';
+    resultado.innerHTML = `<strong>${score}/${total}</strong><br><br><strong>Errores:</strong><br>${details}`;
+}
+
+function disableInputs() {
+    document.querySelectorAll('input').forEach(input => input.disabled = true);
+    document.querySelectorAll('.draggable').forEach(item => item.style.pointerEvents = 'none');
+    document.querySelectorAll('.drop-area').forEach(zone => zone.style.pointerEvents = 'none');
+    document.querySelectorAll('.match-item').forEach(item => item.style.pointerEvents = 'none');
+}
+
+function comprobar() {
+    const unanswered = getUnansweredQuestions();
+    if (unanswered.length) { alert('Responde todas'); return; }
+
+    let score = 0;
+    const mistakes = [];
+
+    Object.entries(respuestas).forEach(([name, config]) => {
+        const answer = getAnswerValue(name);
+        let isCorrect = false;
+        if (config.tipo === 'match') isCorrect = parseInt(answer) === config.valor;
+        else if (config.tipo === 'drag') isCorrect = answer === config.valor;
+        else isCorrect = answer === config.valor;
+        
+        if (isCorrect) score += 1;
+        else mistakes.push(name);
+    });
+
+    showResult(score, mistakes);
+    disableInputs();
+}
+</script>
+</body>
+</html>

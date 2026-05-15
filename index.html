@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Aprende Inglés - Inicio</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial;
+            background-color: #f4f6f9; 
+        }
+        header {
+            background-color: #2a5298; 
+            color: white;
+            padding: 60px;
+            text-align: center;
+        }
+        .boton-evaluacion {
+            background-color: #ff9800; 
+            color: white;
+            padding: 15px 30px;
+            font-weight: bold;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+        }
+        .seccion-niveles {
+            display: none; 
+            margin-top: 20px;
+        }
+        .btn-n {
+            padding: 10px;
+            margin: 5px;
+            background-color: #e68900;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .tarjeta {
+            background: white;
+            width: 250px;
+            margin: 15px;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+            border-left: 8px solid #ff9800; 
+            text-align: center;
+            display: inline-block;
+            vertical-align: top;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        .tarjeta h3 {
+            color: #2a5298;
+        }
+        .btn-temas {
+            display: inline-block;
+            background-color: #ff9800;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Aprende Inglés Básico</h1>
+    <p>Domina el inglés con vocabulario, práctica y ejercicios interactivos</p>
+    <br>
+    <button class="boton-evaluacion" onclick="toggleNiveles()">Hacer Evaluación</button>
+    
+    <div class="seccion-niveles" id="cajaNiveles">
+        <button class="btn-n" onclick="ir('../A1/a1eva.html')">Evaluar A1</button>
+        <button class="btn-n" onclick="ir('../A2/a2eva.html')">Evaluar A2</button>
+        <button class="btn-n" onclick="ir('../B1/b1eva.html')">Evaluar B1</button>
+        <button class="btn-n" onclick="ir('../B2/b2eva.html')">Evaluar B2</button>
+    </div>
+</header>
+
+<center>
+    <div style="max-width: 700px; margin-top: 30px;">
+        <div class="tarjeta">
+            <h3>Nivel A1</h3>
+            <p>Saludos, familia y gramática esencial para principiantes.</p>
+            <a href="../A1/a1temas.html" class="btn-temas">Ver Temario</a>
+        </div>
+
+        <div class="tarjeta">
+            <h3>Nivel A2</h3>
+            <p>Pasado simple, comparativos y planes de futuro.</p>
+            <a href="../A2/a2temas.html" class="btn-temas">Ver Temario</a>
+        </div>
+
+        <br>
+
+        <div class="tarjeta">
+            <h3>Nivel B1</h3>
+            <p>Voz pasiva, condicionales y verbos modales intermedios.</p>
+            <a href="../B1/b1temas.html" class="btn-temas">Ver Temario</a>
+        </div>
+
+        <div class="tarjeta">
+            <h3>Nivel B2</h3>
+            <p>Conectores avanzados, verbos frasales y fluidez técnica.</p>
+            <a href="../B2/b2temas.html" class="btn-temas">Ver Temario</a>
+        </div>
+    </div>
+</center>
+
+<script>
+function toggleNiveles() {
+    var x = document.getElementById("cajaNiveles");
+    if (x.style.display === "block") {
+        x.style.display = "none";
+    } else {
+        x.style.display = "block";
+    }
+}
+
+function ir(pagina) {
+    window.location.href = pagina;
+}
+</script>
+
+</body>
+</html>
