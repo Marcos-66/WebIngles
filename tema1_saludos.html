@@ -17,7 +17,7 @@
         input[type="text"] { padding: 6px 10px; border: 1px solid #ccc; border-radius: 4px; width: 150px; }
         select { padding: 6px 10px; border: 1px solid #ccc; border-radius: 4px; min-width: 150px; }
         .tipo-ejercicio { font-size: 0.85em; color: #666; font-style: italic; margin-bottom: 5px; }
-        .btn-comprobar { background-color: #ff9800; color: white; padding: 12px 30px; border: none; border-radius: 5px; font-size: 1em; cursor: pointer; margin: 20px 0; }
+        .btn-comprobar { background-color: #ff9800; color: white; padding: 12px 30px; border: none; border-radius: 5px; font-size: 1em; cursor: pointer; margin: 20px 0; font-weight: bold; }
         .btn-comprobar:hover { background-color: #e68900; }
         .resultado { padding: 15px; margin: 15px 0; border-radius: 5px; display: none; text-align: left; }
         .resultado.correcto { background-color: #d4edda; color: #155724; }
@@ -30,8 +30,6 @@
         .draggable:active { cursor: grabbing; }
         .drop-area { border: 2px dashed #2a5298; background-color: #f8f9fa; padding: 15px; min-width: 150px; min-height: 50px; border-radius: 8px; text-align: center; margin: 5px; display: inline-block; }
         .drop-area.drag-over { background-color: #e8f0fe; border-color: #ff9800; }
-        .drop-area.correcto { background-color: #d4edda; border-color: #28a745; }
-        .drop-area.incorrecto { background-color: #f8d7da; border-color: #dc3545; }
         
         /* Ejercicios de emparejar */
         .match-container { display: flex; justify-content: space-around; flex-wrap: wrap; margin: 15px 0; }
@@ -40,9 +38,6 @@
         .match-item.selected { background-color: #2a5298; color: white; }
         .match-item.matched { background-color: #28a745; color: white; opacity: 0.7; }
         .match-item.wrong { background-color: #dc3545; color: white; }
-        .match-pair { display: flex; align-items: center; gap: 10px; margin: 10px 0; justify-content: center; }
-        .match-pair span:first-child { background-color: #ff9800; color: white; padding: 8px 15px; border-radius: 5px; min-width: 100px; }
-        .match-pair span:last-child { background-color: #2a5298; color: white; padding: 8px 15px; border-radius: 5px; min-width: 100px; }
         
         .pairs-display { margin-top: 15px; }
         .pair-item { background: #e9ecef; padding: 8px; margin: 5px; border-radius: 5px; display: inline-block; }
@@ -188,7 +183,7 @@
                     </div>
                 </div>
                 <div class="pairs-display" id="pairsDisplay"></div>
-                <input type="hidden" name="match1" id="match1">
+                <input type="hidden" name="m1" id="m1" value="0">
             </div>
         </div>
 
@@ -233,6 +228,11 @@
             selectedMatchItem = element;
             element.classList.add('selected');
         } else {
+            if (selectedMatchItem === element) {
+                element.classList.remove('selected');
+                selectedMatchItem = null;
+                return;
+            }
             const match1 = selectedMatchItem.getAttribute('data-match');
             const match2 = element.getAttribute('data-match');
             
@@ -248,6 +248,7 @@
                 updatePairsDisplay();
             } else {
                 element.classList.add('wrong');
+                selectedMatchItem.classList.remove('selected');
                 setTimeout(() => {
                     element.classList.remove('wrong');
                 }, 500);
@@ -261,7 +262,7 @@
         display.innerHTML = matchedPairs.map(pair => 
             `<span class="pair-item">${pair.left} - ${pair.right}</span>`
         ).join('');
-        document.getElementById('match1').value = matchedPairs.length;
+        document.getElementById('m1').value = matchedPairs.length;
     }
 
     const respuestas = {
@@ -285,11 +286,9 @@
         v8: {tipo: 'radio', valor: 'b'},
         v9: {tipo: 'texto', valor: 'am'},
         v10: {tipo: 'radio', valor: 'a'},
-        // Nuevos ejercicios - Arrastrar y soltar
         d1: {tipo: 'drag', valor: 'am', elemento: 'drop1'},
         d2: {tipo: 'drag', valor: 'Hola', elemento: 'drop2'},
-        // Nuevos ejercicios - Emparejar
-        m1: {tipo: 'match', valor: 3, pares: {Hello:'Hola', Goodbye:'Adiós', Thanks:'Gracias'}}
+        m1: {tipo: 'match', valor: 3}
     };
 
     const textosOp = {
@@ -306,136 +305,131 @@
         v5: {a:'¿Cómo te llamas?', b:'¿Cómo estás?'},
         v7: {a:'Verdadero', b:'Falso'},
         v8: {a:'saludo', b:'despedida'},
-        v10: {a:'¿De dónde eres?', b:'¿Cuántos años tienes?', c:'¿Cómo te llamas?'},
-        d1: {a:'am'},
-        d2: {a:'Hola'}
+        v10: {a:'¿De dónde eres?', b:'¿Cuántos años tienes?', c:'¿Cómo te llamas?'}
     };
 
     const preguntas = {
-        g1:'1. I am a student', g2:'2. is from Spain', g3:'3. I am Maria', g4:'4. My name',
-        g5:'5. You are happy', g6:'6. are students', g7:'7. is from Italy', g8:'8. are tired',
-        g9:'9. They\'re', g10:'10. is a cat',
-        v1:'11. Hello', v2:'12. Goodbye', v3:'13. Good morning', v4:'14. Nice to meet you',
-        v5:'15. How are you', v6:'16. your name', v7:'17. Good night', v8:'18. See you later',
-        v9:'19. I am Ana', v10:'20. Where are you from',
-        d1:'21. Arrastrar: I ___ a student', d2:'22. Arrastrar: Hello = Hola',
-        m1:'23. Emparejar: 3 pares correctos'
+        g1:'1. I ________ a student.', g2:'2. She ________ from Spain.', g3:'3. Hello, I ________ Maria.', g4:'4. ________ name is John.',
+        g5:'5. You ________ happy.', g6:'6. We ________ students.', g7:'7. He ________ from Italy.', g8:'8. They ________ tired.',
+        g9:'9. "They are" -> "They\'re"', g10:'10. It ________ a cat.',
+        v1:'11. "Hello" means', v2:'12. "Goodbye" is', v3:'13. Good ________, Mr. Smith!', v4:'14. "Nice to meet you" means',
+        v5:'15. "How are you?" means', v6:'16. What is your ________?', v7:'17. "Good night" usage', v8:'18. "See you later" is',
+        v9:'19. I ________ Ana.', v10:'20. "Where are you from?" means',
+        d1:'21. Drag: I ________ a student.', d2:'22. Drag: "Hello" = ________',
+        m1:'23. Word Matching'
     };
 
-function getAnswerValue(name) {
-    const config = respuestas[name];
-    if (!config) return '';
-    
-    if (config.tipo === 'radio') {
-        const selectedOption = document.querySelector(`input[name="${name}"]:checked`);
-        return selectedOption ? selectedOption.value : '';
-    }
-    
-    if (config.tipo === 'texto') {
-        const textField = document.querySelector(`input[name="${name}"]`);
-        return textField ? textField.value.trim().toLowerCase() : '';
-    }
-    
-    if (config.tipo === 'drag') {
-        const dropZone = document.getElementById(config.elemento);
-        return dropZone ? dropZone.getAttribute('data-filled') || '' : '';
-    }
-    
-    if (config.tipo === 'match') {
-        return document.getElementById(name) ? document.getElementById(name).value : '';
-    }
-    
-    return '';
-}
-
-function getUnansweredQuestions() {
-    return Object.entries(respuestas).filter(([name, config]) => {
-        const value = getAnswerValue(name);
-        if (!value) return true;
-        if (config.tipo === 'match') {
-            return parseInt(value) !== config.valor;
-        }
-        return false;
-    }).map(([name]) => name);
-}
-
-function showResult(score, mistakes) {
-    const resultado = document.getElementById('resultado');
-    resultado.style.display = 'block';
-    const total = Object.keys(respuestas).length;
-
-    if (mistakes.length === 0) {
-        resultado.className = 'resultado correcto';
-        resultado.innerHTML = `<strong>¡Perfecto! ${total}/${total}</strong>`;
-        return;
-    }
-
-    const details = mistakes.map(key => {
-        const config = respuestas[key];
-        let correctText;
+    function getAnswerValue(name) {
+        const config = respuestas[name];
+        if (!config) return '';
+        
         if (config.tipo === 'radio') {
-            correctText = textosOp[key][config.valor];
-        } else if (config.tipo === 'drag') {
-            correctText = config.valor;
-        } else if (config.tipo === 'match') {
-            correctText = '3 pares correctos (Hello-Hola, Goodbye-Adiós, Thanks-Gracias)';
-        } else {
-            correctText = config.valor;
+            const selectedOption = document.querySelector(`input[name="${name}"]:checked`);
+            return selectedOption ? selectedOption.value : '';
         }
-        return `• ${preguntas[key]} → ${correctText}`;
-    }).join('<br>');
-
-    resultado.className = 'resultado incorrecto';
-    resultado.innerHTML = `<strong>${score}/${total}</strong><br><br><strong>Errores:</strong><br>${details}`;
-}
-
-function disableInputs() {
-    document.querySelectorAll('input').forEach(input => {
-        input.disabled = true;
-    });
-    document.querySelectorAll('.draggable').forEach(item => {
-        item.style.pointerEvents = 'none';
-    });
-    document.querySelectorAll('.drop-area').forEach(zone => {
-        zone.style.pointerEvents = 'none';
-    });
-    document.querySelectorAll('.match-item').forEach(item => {
-        item.style.pointerEvents = 'none';
-    });
-}
-
-function comprobar() {
-    const unanswered = getUnansweredQuestions();
-    if (unanswered.length) {
-        alert('Responde todas');
-        return;
-    }
-
-    let score = 0;
-    const mistakes = [];
-
-    Object.entries(respuestas).forEach(([name, config]) => {
-        const answer = getAnswerValue(name);
-        let isCorrect = false;
+        
+        if (config.tipo === 'texto') {
+            const textField = document.querySelector(`input[name="${name}"]`);
+            return textField ? textField.value.trim().toLowerCase() : '';
+        }
+        
+        if (config.tipo === 'drag') {
+            const dropZone = document.getElementById(config.elemento);
+            return dropZone ? dropZone.getAttribute('data-filled') || '' : '';
+        }
         
         if (config.tipo === 'match') {
-            isCorrect = parseInt(answer) === config.valor;
-        } else if (config.tipo === 'drag') {
-            isCorrect = answer === config.valor;
-        } else {
-            isCorrect = answer === config.valor;
+            const matchInput = document.getElementById(name);
+            return matchInput ? matchInput.value : '0';
         }
         
-        if (isCorrect) {
-            score += 1;
-        } else {
-            mistakes.push(name);
-        }
-    });
+        return '';
+    }
 
-    showResult(score, mistakes);
-    disableInputs();
-}
-</script>
+    function getUnansweredQuestions() {
+        return Object.entries(respuestas).filter(([name, config]) => {
+            const value = getAnswerValue(name);
+            if (config.tipo === 'match') return !value || parseInt(value) === 0;
+            return !value;
+        }).map(([name]) => name);
+    }
+
+    function showResult(score, mistakes) {
+        const resultado = document.getElementById('resultado');
+        resultado.style.display = 'block';
+        const total = Object.keys(respuestas).length;
+
+        if (mistakes.length === 0) {
+            resultado.className = 'resultado correcto';
+            resultado.innerHTML = `<strong>¡Perfecto! ${total}/${total}</strong>`;
+            return;
+        }
+
+        const details = mistakes.map(key => {
+            const config = respuestas[key];
+            let correctText;
+            if (config.tipo === 'radio') {
+                correctText = textosOp[key][config.valor];
+            } else if (config.tipo === 'drag') {
+                correctText = config.valor;
+            } else if (config.tipo === 'match') {
+                correctText = '3 correct pairs (Hello-Hola, Goodbye-Adiós, Thanks-Gracias)';
+            } else {
+                correctText = config.valor;
+            }
+            return `• ${preguntas[key]} → ${correctText}`;
+        }).join('<br>');
+
+        resultado.className = 'resultado incorrecto';
+        resultado.innerHTML = `<strong>Puntuación: ${score}/${total}</strong><br><br><strong>Errores:</strong><br>${details}`;
+    }
+
+    function disableInputs() {
+        document.querySelectorAll('input').forEach(input => {
+            input.disabled = true;
+        });
+        document.querySelectorAll('.draggable').forEach(item => {
+            item.setAttribute('draggable', 'false');
+            item.style.cursor = 'default';
+        });
+        document.querySelectorAll('.drop-area').forEach(zone => {
+            zone.style.pointerEvents = 'none';
+        });
+        document.querySelectorAll('.match-item').forEach(item => {
+            item.style.pointerEvents = 'none';
+        });
+    }
+
+    function comprobar() {
+        const unanswered = getUnansweredQuestions();
+        if (unanswered.length > 0) {
+            alert('Por favor, responde todas las preguntas antes de comprobar.');
+            return;
+        }
+
+        let score = 0;
+        const mistakes = [];
+
+        Object.entries(respuestas).forEach(([name, config]) => {
+            const answer = getAnswerValue(name);
+            let isCorrect = false;
+            
+            if (config.tipo === 'match') {
+                isCorrect = parseInt(answer) === config.valor;
+            } else {
+                isCorrect = (answer === config.valor);
+            }
+            
+            if (isCorrect) {
+                score += 1;
+            } else {
+                mistakes.push(name);
+            }
+        });
+
+        showResult(score, mistakes);
+        disableInputs();
+    }
+    </script>
 </body>
 </html>
