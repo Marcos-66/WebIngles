@@ -1,56 +1,170 @@
 <!DOCTYPE html>
 <html lang="es">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>B1 - Tema 4: Deportes</title>
-    <style>body{font-family:Arial,sans-serif;background:#f4f6f9;margin:0;padding:0;text-align:center}header{background:#2a5298;color:#fff;padding:40px 15px;margin-bottom:20px}.c{max-width:900px;margin:0 auto}.s{background:#fff;padding:20px;margin-bottom:15px;border-radius:10px;border-left:6px solid #ff9800}h2{color:#2a5298}.e{margin:15px 0;padding:12px;background:#f8f9fa;border-radius:8px}.o label{display:block;margin:6px 0}input[type="text"]{padding:6px 10px;border:1px solid #ccc;border-radius:4px;width:180px}.b{background:#ff9800;color:#fff;padding:12px 30px;border:none;cursor:pointer;margin:20px 0}.r{padding:15px;display:none}.r.c{background:#d4edda;color:#155724}.r.i{background:#f8d7da;color:#721c24}.br{background:#2a5298;color:#fff;padding:10px 22px;border-radius:5px;text-decoration:none;display:inline-block;margin:20px 0}.seccion{background:#fff;padding:20px;margin-bottom:15px;border-radius:10px;border-left:6px solid #ff9800}.ejercicio{padding:15px;background:#f8f9fa;border-radius:8px;margin:10px 0}.drag-container{display:flex;gap:20px;margin:15px 0;justify-content:center;flex-wrap:wrap}.draggable{background:#ff9800;color:#fff;padding:10px 15px;border-radius:5px;cursor:grab;display:inline-block;margin:5px;font-weight:bold}.draggable:active{cursor:grabbing}.drop-area{border:2px dashed #2a5298;background:#f8f9fa;padding:15px;min-width:150px;min-height:50px;border-radius:8px;text-align:center;margin:5px;display:inline-block}.drop-area.drag-over{background:#e8f0fe;border-color:#ff9800}.match-container{display:flex;justify-content:space-around;flex-wrap:wrap;margin:15px 0}.match-column{display:flex;flex-direction:column;gap:10px}.match-item{background:#e9ecef;padding:10px 20px;border-radius:5px;cursor:pointer;text-align:center}.match-item.selected{background:#2a5298;color:#fff}.match-item.matched{background:#28a745;color:#fff;opacity:0.7}.match-item.wrong{background:#dc3545;color:#fff}.pairs-display{margin-top:15px}.pair-item{background:#e9ecef;padding:8px;margin:5px;border-radius:5px;display:inline-block}</style></head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B1 - Tema 4: Deportes</title>
+    <style>
+        body{font-family:Arial,sans-serif;background:#f4f6f9;margin:0;padding:0;text-align:center}
+        header{background:#2a5298;color:#fff;padding:40px 15px;margin-bottom:20px}
+        .c{max-width:900px;margin:0 auto;padding:0 20px;}
+        .s{background:#fff;padding:20px;margin-bottom:15px;border-radius:10px;border-left:6px solid #ff9800;text-align:left}
+        h2{color:#2a5298}
+        .e{margin:15px 0;padding:12px;background:#f8f9fa;border-radius:8px}
+        .o label{display:block;margin:6px 0;cursor:pointer;}
+        .o input[type="radio"] {margin-right:8px;}
+        input[type="text"]{padding:6px 10px;border:1px solid #ccc;border-radius:4px;width:180px}
+        
+        /* Ajustes de control y visualización de errores */
+        .b{background:#ff9800;color:#fff;padding:12px 30px;border:none;border-radius:5px;cursor:pointer;margin:20px 0;font-weight:bold;font-size:1em;}
+        .b:hover{background:#e68900;}
+        .r{padding:15px;margin:15px 0;border-radius:5px;display:none;text-align:left;}
+        .r.c{background:#d4edda;color:#155724}
+        .r.i{background:#f8d7da;color:#721c24}
+        .br{background:#2a5298;color:#fff;padding:10px 22px;border-radius:5px;text-decoration:none;display:inline-block;margin:30px 0 20px 0;}
+        .br:hover{background:#1a3c73;}
+        
+        .seccion{background:#fff;padding:20px;margin-bottom:15px;border-radius:10px;border-left:6px solid #ff9800;text-align:left}
+        .ejercicio{padding:15px;background:#f8f9fa;border-radius:8px;margin:10px 0}
+        .drag-container{display:flex;gap:20px;margin:15px 0;justify-content:center;flex-wrap:wrap}
+        .draggable{background:#ff9800;color:#fff;padding:10px 15px;border-radius:5px;cursor:grab;display:inline-block;margin:5px;font-weight:bold}
+        .draggable:active{cursor:grabbing}
+        .drop-area{border:2px dashed #2a5298;background:#f8f9fa;padding:15px;min-width:150px;min-height:50px;border-radius:8px;text-align:center;margin:5px;display:inline-block}
+        .drop-area.drag-over{background:#e8f0fe;border-color:#ff9800}
+        .match-container{display:flex;justify-content:space-around;flex-wrap:wrap;margin:15px 0}
+        .match-column{display:flex;flex-direction:column;gap:10px}
+        .match-item{background:#e9ecef;padding:10px 20px;border-radius:5px;cursor:pointer;text-align:center}
+        .match-item.selected{background:#2a5298;color:#fff}
+        .match-item.matched{background:#28a745;color:#fff;opacity:0.7}
+        .match-item.wrong{background:#dc3545;color:#fff}
+        .pairs-display{margin-top:15px}
+        .pair-item{background:#e9ecef;padding:8px;margin:5px;border-radius:5px;display:inline-block}
+    </style>
+</head>
 <body>
 <header><h1>Nivel B1 - Tema 4: Deportes y Ocio</h1></header>
 <div class="c">
-<div class="s"><h2>GRAMÁTICA</h2>
-<div class="e"><p>1. I ________ playing football.</p><div class="o"><label><input type="radio" name="g1" value="a">like</label><label><input type="radio" name="g1" value="b">likes</label><label><input type="radio" name="g1" value="c">liking</label></div></div>
-<div class="e"><p>2. Choose: "He ________ (like/likes) watching tennis."</p><div class="o"><label><input type="radio" name="g2" value="a">like</label><label><input type="radio" name="g2" value="b">likes</label></div></div>
-<div class="e"><p>3. Complete: "I would like ________ play tennis tomorrow."</p><input type="text" name="g3" placeholder="Escribe..." style="text-transform:lowercase;"></div>
-<div class="e"><p>4. Choose: "She would like ________ (to go/going) to the gym."</p><div class="o"><label><input type="radio" name="g4" value="a">to go</label><label><input type="radio" name="g4" value="b">going</label></div></div>
-<div class="e"><p>5. Complete: "I enjoy ________ (swim/swimming) every morning."</p><input type="text" name="g5" placeholder="Escribe..." style="text-transform:lowercase;"></div>
-<div class="e"><p>6. Choose: "Would you like ________ (to play/playing) golf?"</p><div class="o"><label><input type="radio" name="g6" value="a">to play</label><label><input type="radio" name="g6" value="b">playing</label></div></div>
-<div class="e"><p>7. Complete: "He doesn't mind ________ (lose/losing) matches."</p><input type="text" name="g7" placeholder="Escribe..." style="text-transform:lowercase;"></div>
-<div class="e"><p>8. Choose: "I fancy ________ (go/going) to the match."</p><div class="o"><label><input type="radio" name="g8" value="a">go</label><label><input type="radio" name="g8" value="b">going</label></div></div>
+    <div class="s"><h2>GRAMÁTICA</h2>
+        <div class="e"><p>1. I ________ playing football.</p><div class="o"><label><input type="radio" name="g1" value="a">like</label><label><input type="radio" name="g1" value="b">likes</label><label><input type="radio" name="g1" value="c">liking</label></div></div>
+        <div class="e"><p>2. Choose: "He ________ (like/likes) watching tennis."</p><div class="o"><label><input type="radio" name="g2" value="b">likes</label><label><input type="radio" name="g2" value="a">like</label></div></div>
+        <div class="e"><p>3. Complete: "I would like ________ play tennis tomorrow." (to)</p><input type="text" name="g3" placeholder="Escribe..." style="text-transform:lowercase;"></div>
+        <div class="e"><p>4. Choose: "She would like ________ (to go/going) to the gym."</p><div class="o"><label><input type="radio" name="g4" value="a">to go</label><label><input type="radio" name="g4" value="b">going</label></div></div>
+        <div class="e"><p>5. Complete: "I enjoy ________ (swim/swimming) every morning." (swimming)</p><input type="text" name="g5" placeholder="Escribe..." style="text-transform:lowercase;"></div>
+        <div class="e"><p>6. Choose: "Would you like ________ (to play/playing) golf?"</p><div class="o"><label><input type="radio" name="g6" value="a">to play</label><label><input type="radio" name="g6" value="b">playing</label></div></div>
+        <div class="e"><p>7. Complete: "He doesn't mind ________ (lose/losing) matches." (losing)</p><input type="text" name="g7" placeholder="Escribe..." style="text-transform:lowercase;"></div>
+        <div class="e"><p>8. Choose: "I fancy ________ (go/going) to the match."</p><div class="o"><label><input type="radio" name="g8" value="b">going</label><label><input type="radio" name="g8" value="a">go</label></div></div>
+    </div>
+    
+    <div class="s"><h2>VOCABULARIO</h2>
+        <div class="e"><p>9. "Swimming" significa:</p><div class="o"><label><input type="radio" name="v1" value="b">nadar</label><label><input type="radio" name="v1" value="a">navegar</label><label><input type="radio" name="v1" value="c">bucear</label></div></div>
+        <div class="e"><p>10. Choose: "Basketball" es (baloncesto/voleibol/fútbol).</p><div class="o"><label><input type="radio" name="v2" value="b">baloncesto</label><label><input type="radio" name="v2" value="a">voleibol</label><label><input type="radio" name="v2" value="c">fútbol</label></div></div>
+        <div class="e"><p>11. Complete: "My favorite ________ is running." (hobby/sport)</p><input type="text" name="v3" placeholder="Escribe..." style="text-transform:lowercase;"></div>
+        <div class="e"><p>12. Choose: "Training" es (entrenamiento/partido/descanso).</p><div class="o"><label><input type="radio" name="v4" value="b">entrenamiento</label><label><input type="radio" name="v4" value="a">partido</label><label><input type="radio" name="v4" value="c">descanso</label></div></div>
+        <div class="e"><p>13. Complete: "We won the ________ yesterday." (match/game)</p><input type="text" name="v5" placeholder="Escribe..." style="text-transform:lowercase;"></div>
+        <div class="e"><p>14. Choose: "Champion" es (campeón/perdedor/árbitro).</p><div class="o"><label><input type="radio" name="v6" value="a">campeón</label><label><input type="radio" name="v6" value="b">perdedor</label><label><input type="radio" name="v6" value="c">árbitro</label></div></div>
+        <div class="e"><p>15. Complete: "I need to improve my ________ techniques." (tennis/basketball/football)</p><input type="text" name="v7" placeholder="Escribe..." style="text-transform:lowercase;"></div>
+    </div>
+    
+    <div class="seccion"><h2>EJERCICIOS EXTRA - Arrastrar y Soltar</h2>
+        <div class="ejercicio"><p class="tipo-ejercicio">Arrastrar y soltar</p><p>Arrastra la palabra correcta:</p>
+            <div class="drag-container"><div class="draggable" draggable="true" data-value="football">football</div><div class="draggable" draggable="true" data-value="tennis">tennis</div><div class="draggable" draggable="true" data-value="player">player</div></div>
+            <div>Oración: My favorite sport is <span class="drop-area" data-answer="football" id="drop1"></span>.</div>
+        </div>
+    </div>
+    
+    <div class="seccion"><h2>EJERCICIOS EXTRA - Emparejar</h2>
+        <div class="ejercicio"><p class="tipo-ejercicio">Emparejar</p><p>Haz clic para emparejar:</p>
+            <div class="match-container">
+                <div class="match-column">
+                    <div class="match-item" data-match="a" onclick="selectMatch(this)">basketball</div>
+                    <div class="match-item" data-match="b" onclick="selectMatch(this)">score</div>
+                    <div class="match-item" data-match="c" onclick="selectMatch(this)">tennis</div>
+                </div>
+                <div class="match-column">
+                    <div class="match-item" data-match="c" onclick="selectMatch(this)">racket sport</div>
+                    <div class="match-item" data-match="a" onclick="selectMatch(this)">court sport</div>
+                    <div class="match-item" data-match="b" onclick="selectMatch(this)">points in game</div>
+                </div>
+            </div>
+            <div class="pairs-display" id="pairsDisplay"></div>
+            <input type="hidden" name="m1" id="m1" value="0">
+        </div>
+    </div>
+    
+    <div style="text-align: center; margin-top: 20px;">
+        <button class="b" onclick="comprobar()">COMPROBAR</button>
+        <div id="r" class="r"></div>
+        <div><a href="index3.html" class="br">← Volver</a></div>
+    </div>
 </div>
-<div class="s"><h2>VOCABULARIO</h2>
-<div class="e"><p>9. "Swimming" significa:</p><div class="o"><label><input type="radio" name="v1" value="a">navegar</label><label><input type="radio" name="v1" value="b">nadar</label><label><input type="radio" name="v1" value="c">bucear</label></div></div>
-<div class="e"><p>10. Choose: "Basketball" es (baloncesto/voleibol/fútbol).</p><div class="o"><label><input type="radio" name="v2" value="a">voleibol</label><label><input type="radio" name="v2" value="b">baloncesto</label><label><input type="radio" name="v2" value="c">fútbol</label></div></div>
-<div class="e"><p>11. Complete: "My favorite ________ is running."</p><input type="text" name="v3" placeholder="Escribe..." style="text-transform:lowercase;"></div>
-<div class="e"><p>12. Choose: "Training" es (entrenamiento/partido/descanso).</p><div class="o"><label><input type="radio" name="v4" value="a">partido</label><label><input type="radio" name="v4" value="b">entrenamiento</label><label><input type="radio" name="v4" value="c">descanso</label></div></div>
-<div class="e"><p>13. Complete: "We won the ________ yesterday."</p><input type="text" name="v5" placeholder="Escribe..." style="text-transform:lowercase;"></div>
-<div class="e"><p>14. Choose: "Champion" es (campeón/perdedor/árbitro).</p><div class="o"><label><input type="radio" name="v6" value="a">campeón</label><label><input type="radio" name="v6" value="b">perdedor</label><label><input type="radio" name="v6" value="c">árbitro</label></div></div>
-<div class="e"><p>15. Complete: "I need to improve my ________ techniques."</p><input type="text" name="v7" placeholder="Escribe..." style="text-transform:lowercase;"></div>
-</div>
-<div class="seccion"><h2>EJERCICIOS EXTRA - Arrastrar y Soltar</h2>
-<div class="ejercicio"><p class="tipo-ejercicio">Arrastrar y soltar</p><p>Arrastra la palabra correcta:</p><div class="drag-container"><div class="draggable" draggable="true" data-value="football">football</div><div class="draggable" draggable="true" data-value="tennis">tennis</div><div class="draggable" draggable="true" data-value="player">player</div></div><div>Oración: My favorite sport is <span class="drop-area" data-answer="football" id="drop1"></span>.</div></div>
-</div>
-<div class="seccion"><h2>EJERCICIOS EXTRA - Emparejar</h2>
-<div class="ejercicio"><p class="tipo-ejercicio">Emparejar</p><p>Haz clic para emparejar:</p><div class="match-container"><div class="match-column"><div class="match-item" data-match="a" onclick="selectMatch(this)">basketball</div><div class="match-item" data-match="b" onclick="selectMatch(this)">score</div><div class="match-item" data-match="c" onclick="selectMatch(this)">tennis</div></div><div class="match-column"><div class="match-item" data-match="c" onclick="selectMatch(this)">racket sport</div><div class="match-item" data-match="a" onclick="selectMatch(this)">court sport</div><div class="match-item" data-match="b" onclick="selectMatch(this)">points in game</div></div></div><div class="pairs-display" id="pairsDisplay"></div><input type="hidden" name="m1" id="m1"></div>
-</div>
-<div style="text-align: center; margin-top: 20px;">
-    <button class="b" onclick="comprobar()">COMPROBAR</button>
-    <div id="r" class="r"></div>
-    <a href="index3.html" class="br" style="margin-left: 15px;">← Volver</a>
-</div>
+
 <script>
-let matchedPairs = []; let selectedMatchItem = null; document.querySelectorAll('.draggable').forEach(item => { item.addEventListener('dragstart', function(e) { e.dataTransfer.setData('text/plain', this.getAttribute('data-value')); }); }); document.querySelectorAll('.drop-area').forEach(zone => { zone.addEventListener('dragover', function(e) { e.preventDefault(); this.classList.add('drag-over'); }); zone.addEventListener('dragleave', function() { this.classList.remove('drag-over'); }); zone.addEventListener('drop', function(e) { e.preventDefault(); this.classList.remove('drag-over'); this.textContent = e.dataTransfer.getData('text/plain'); this.setAttribute('data-filled', e.dataTransfer.getData('text/plain')); }); }); function selectMatch(element) { if (element.classList.contains('matched') || element.classList.contains('wrong')) return; if (!selectedMatchItem) { selectedMatchItem = element; element.classList.add('selected'); } else { const m1 = selectedMatchItem.getAttribute('data-match'); const m2 = element.getAttribute('data-match'); if (m1 === m2) { selectedMatchItem.classList.remove('selected'); selectedMatchItem.classList.add('matched'); element.classList.add('matched'); matchedPairs.push({left: selectedMatchItem.textContent, right: element.textContent}); document.getElementById('pairsDisplay').innerHTML = matchedPairs.map(p => `<span class="pair-item">${p.left} - ${p.right}</span>`).join(''); document.getElementById('m1').value = matchedPairs.length; } else { element.classList.add('wrong'); setTimeout(() => element.classList.remove('wrong'), 500); } selectedMatchItem = null; } }
+let matchedPairs = []; 
+let selectedMatchItem = null; 
+
+document.querySelectorAll('.draggable').forEach(item => { 
+    item.addEventListener('dragstart', function(e) { e.dataTransfer.setData('text/plain', this.getAttribute('data-value')); }); 
+}); 
+
+document.querySelectorAll('.drop-area').forEach(zone => { 
+    zone.addEventListener('dragover', function(e) { e.preventDefault(); this.classList.add('drag-over'); }); 
+    zone.addEventListener('dragleave', function() { this.classList.remove('drag-over'); }); 
+    zone.addEventListener('drop', function(e) { 
+        e.preventDefault(); 
+        this.classList.remove('drag-over'); 
+        const droppedValue = e.dataTransfer.getData('text/plain');
+        this.textContent = droppedValue; 
+        this.setAttribute('data-filled', droppedValue); 
+    }); 
+}); 
+
+function selectMatch(element) { 
+    if (element.classList.contains('matched') || element.classList.contains('wrong')) return; 
+    if (!selectedMatchItem) { 
+        selectedMatchItem = element; 
+        element.classList.add('selected'); 
+    } else { 
+        if (selectedMatchItem === element) {
+            element.classList.remove('selected');
+            selectedMatchItem = null;
+            return;
+        }
+        const m1 = selectedMatchItem.getAttribute('data-match'); 
+        const m2 = element.getAttribute('data-match'); 
+        if (m1 === m2) { 
+            selectedMatchItem.classList.remove('selected'); 
+            selectedMatchItem.classList.add('matched'); 
+            element.classList.add('matched'); 
+            matchedPairs.push({left: selectedMatchItem.textContent, right: element.textContent}); 
+            document.getElementById('pairsDisplay').innerHTML = matchedPairs.map(p => `<span class="pair-item">${p.left} - ${p.right}</span>`).join(''); 
+            document.getElementById('m1').value = matchedPairs.length; 
+        } else { 
+            element.classList.add('wrong'); 
+            selectedMatchItem.classList.remove('selected');
+            setTimeout(() => element.classList.remove('wrong'), 500); 
+        } 
+        selectedMatchItem = null; 
+    } 
+}
 
 const respuestas = {
     g1:{tipo:'radio',valor:'a'},g2:{tipo:'radio',valor:'b'},g3:{tipo:'texto',valor:'to'},g4:{tipo:'radio',valor:'a'},
     g5:{tipo:'texto',valor:'swimming'},g6:{tipo:'radio',valor:'a'},g7:{tipo:'texto',valor:'losing'},g8:{tipo:'radio',valor:'b'},
     v1:{tipo:'radio',valor:'b'},v2:{tipo:'radio',valor:'b'},v3:{tipo:'texto',valor:'hobby'},v4:{tipo:'radio',valor:'b'},
-    v5:{tipo:'texto',valor:'match'},v6:{tipo:'radio',valor:'a'},v7:{tipo:'texto',valor:'tennis'}, d1:{tipo:'drag',valor:'football',elemento:'drop1'}, m1:{tipo:'match',valor:3}
+    v5:{tipo:'texto',valor:'match'},v6:{tipo:'radio',valor:'a'},v7:{tipo:'texto',valor:'tennis'}, 
+    d1:{tipo:'drag',valor:'football',elemento:'drop1'}, 
+    m1:{tipo:'match',valor:3}
 };
+
 const textosOp = {
     g1:{a:'like',b:'likes',c:'liking'},g2:{a:'like',b:'likes'},g4:{a:'to go',b:'going'},g6:{a:'to play',b:'playing'},g8:{a:'go',b:'going'},
-    v1:{a:'navegar',b:'nadar',c:'bucear'},v2:{a:'voleibol',b:'baloncesto',c:'fútbol'},v4:{a:'partido',b:'entrenamiento',c:'descanso'},v6:{a:'campeón',b:'perdedor',c:'árbitro'}, d1:{a:'football'}
+    v1:{a:'navegar',b:'nadar',c:'bucear'},v2:{a:'voleibol',b:'baloncesto',c:'fútbol'},v4:{a:'partido',b:'entrenamiento',c:'descanso'},v6:{a:'campeón',b:'perdedor',c:'árbitro'}
 };
+
 const preguntas = {
     g1:'1. like playing',g2:'2. likes watching',g3:'3. to play',g4:'4. to go',g5:'5. swimming',g6:'6. to play',g7:'7. losing',g8:'8. going',
-    v1:'9. Swimming',v2:'10. Basketball',v3:'11. hobby',v4:'12. Training',v5:'13. match',v6:'14. Champion',v7:'15. tennis', d1:'16. Arrastrar', m1:'16. Emparejar'
+    v1:'9. Swimming',v2:'10. Basketball',v3:'11. hobby/sport',v4:'12. Training',v5:'13. match',v6:'14. Champion',v7:'15. tennis', 
+    d1:'16. Arrastrar: football', m1:'17. Emparejar: 3 términos'
 };
 
 function getAnswerValue(name) {
@@ -68,27 +182,29 @@ function getAnswerValue(name) {
         const dz = document.getElementById(config.elemento);
         return dz ? dz.getAttribute('data-filled') || '' : '';
     }
-    if (config.tipo === 'match') return document.getElementById(name) ? document.getElementById(name).value : '';
+    if (config.tipo === 'match') {
+        const matchInput = document.getElementById(name);
+        return matchInput ? matchInput.value : '0';
+    }
     return '';
 }
 
 function getUnansweredQuestions() {
     return Object.entries(respuestas).filter(([n, c]) => {
         const v = getAnswerValue(n);
-        if (!v) return true;
-        if (c.tipo === 'match') return parseInt(v) !== c.valor;
-        return false;
+        if (c.tipo === 'match') return !v || parseInt(v) === 0;
+        return !v;
     }).map(([n]) => n);
 }
 
 function showResult(score, mistakes) {
-    const resultado = document.getElementById('resultado');
+    const resultado = document.getElementById('r');
     resultado.style.display = 'block';
     const total = Object.keys(respuestas).length;
 
     if (mistakes.length === 0) {
-        resultado.className = 'resultado correcto';
-        resultado.innerHTML = `<strong>¡Perfecto! ${total}/${total}</strong>`;
+        resultado.className = 'r c';
+        resultado.innerHTML = `<strong>¡Perfecto! ${total}/${total} Correctas</strong>`;
         return;
     }
 
@@ -96,26 +212,27 @@ function showResult(score, mistakes) {
         const config = respuestas[key];
         let correctText;
         if (config.tipo === 'radio') correctText = textosOp[key][config.valor];
-        else if (config.tipo === 'drag') correctText = textosOp[key] ? textosOp[key][config.valor] : config.valor;
-        else if (config.tipo === 'match') correctText = '3 emparejamientos';
+        else if (config.tipo === 'drag') correctText = config.valor;
+        else if (config.tipo === 'match') correctText = '3 términos (basketball, score, tennis)';
         else correctText = config.valor;
         return `• ${preguntas[key]} → ${correctText}`;
     }).join('<br>');
 
-    resultado.className = 'resultado incorrecto';
-    resultado.innerHTML = `<strong>${score}/${total}</strong><br><br><strong>Errores:</strong><br>${details}`;
+    resultado.className = 'r i';
+    resultado.innerHTML = `<strong>Puntuación: ${score}/${total}</strong><br><br><strong>Errores:</strong><br>${details}`;
 }
 
 function disableInputs() {
     document.querySelectorAll('input').forEach(input => { input.disabled = true; });
     document.querySelectorAll('.draggable').forEach(el => { el.setAttribute('draggable', 'false'); el.style.cursor = 'default'; });
+    document.querySelectorAll('.drop-area').forEach(zone => zone.style.pointerEvents = 'none');
     document.querySelectorAll('.match-item').forEach(el => { el.style.pointerEvents = 'none'; });
 }
 
 function comprobar() {
     const unanswered = getUnansweredQuestions();
-    if (unanswered.length) {
-        alert('Responde todas');
+    if (unanswered.length > 0) {
+        alert('Por favor, responde todas las preguntas antes de comprobar.');
         return;
     }
 
@@ -124,17 +241,21 @@ function comprobar() {
 
     Object.entries(respuestas).forEach(([name, config]) => {
         const answer = getAnswerValue(name);
+        let isCorrect = false;
+
         if (config.tipo === 'match') {
-            if (parseInt(answer) === config.valor) score += 1;
-            else mistakes.push(name);
-        } else if (answer === config.valor) {
-            score += 1;
+            isCorrect = parseInt(answer) === config.valor;
         } else {
-            mistakes.push(name);
+            isCorrect = (answer === config.valor);
         }
+
+        if (isCorrect) score += 1;
+        else mistakes.push(name);
     });
 
     showResult(score, mistakes);
     disableInputs();
 }
-</script></body></html>
+</script>
+</body>
+</html>
