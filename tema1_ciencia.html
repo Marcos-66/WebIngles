@@ -1,39 +1,3 @@
-¡Lo tengo! Ya veo exactamente dónde está el error que está rompiendo tu código y por qué se queda "bucleado" pidiéndote que respondas todo.
-
-Hay **dos errores críticos** en tu código de JavaScript que hacen que la función `comprobar()` falle silenciosamente. Aquí te explico cuáles son y cómo solucionarlos:
-
----
-
-### ❌ Los errores en tu código actual
-
-1. **El ID del contenedor de resultados no coincide:**
-En tu HTML tienes un `div` con la id "r" (`<div id="r" class="r"></div>`). Sin embargo, dentro de la función `showResult`, tu JavaScript intenta buscar un elemento llamado "resultado":
-```javascript
-const resultado = document.getElementById('resultado'); // ¡Esto da null!
-
-```
-
-
-Al no encontrarlo, el script se rompe a mitad de ejecución con un error invisible en la consola, impidiendo que el código termine de procesar las respuestas.
-2. **La lógica de `getUnansweredQuestions()` está rota:**
-Para las preguntas de tipo `match` (emparejar) y `drag` (arrastrar), tu función tiene una lógica cruzada:
-```javascript
-if (config.tipo === 'match') return parseInt(v) !== c.valor;
-
-```
-
-
-Esto significa que si el usuario no ha terminado de emparejar, la función dice que "falta responder". Pero si el usuario responde **mal**, la función *también* cree que la pregunta está vacía. Es decir, el botón te exige que respondas todo bien para poder validarlo, en lugar de dejarte fallar. Además, la clave `d1` (el ejercicio de arrastrar) no está bien mapeada en los objetos de textos.
-
----
-
-### ✔️ El código corregido y optimizado
-
-Aquí tienes tu código completo con el JavaScript corregido. He unificado los IDs de los resultados (ahora ambos usan `resultado`) y corregido la lógica de validación para que detecte correctamente cuándo una casilla está realmente vacía.
-
-Puedes copiar y pegar este código directamente en tu archivo de GitHub:
-
-```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -288,4 +252,4 @@ function comprobar() {
 </body>
 </html>
 
-```
+
